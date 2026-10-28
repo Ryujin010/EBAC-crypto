@@ -1,0 +1,29 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.trending {
+  display: grid;
+  gap: $space-sm;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &__link {
+    @include card;
+    display: flex;
+    align-items: center;
+    gap: $space-sm;
+
+    img {
+      border-radius: 50%;
+    }
+
+    &:hover {
+      border-color: $color-primary;
+    }
+  }
+
+  &__rank {
+    margin-left: auto;
+  }
+}

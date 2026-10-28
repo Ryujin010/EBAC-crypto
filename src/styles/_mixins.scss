@@ -1,0 +1,23 @@
+@use 'sass:map';
+@use 'variables' as *;
+
+// Uso: @include respond-to(md) { ... }
+@mixin respond-to($bp) {
+  @media (min-width: map.get($breakpoints, $bp)) {
+    @content;
+  }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: $container-width;
+  margin-inline: auto;
+  padding-inline: $space-md;
+}
+
+@mixin card {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  padding: $space-md;
+}

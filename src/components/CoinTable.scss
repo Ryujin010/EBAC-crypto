@@ -1,0 +1,97 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.coin-table-wrapper {
+  overflow-x: auto;
+}
+
+.coin-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  // Móvil: el encabezado se oculta visualmente y cada fila se vuelve una tarjeta
+  
+  thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  th {
+    padding: $space-md;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: left;
+    text-transform: uppercase;
+    color: $color-text-muted;
+    border-bottom: 1px solid $color-border;
+  }
+
+  tbody tr {
+    @include card;
+    display: block;
+    margin-bottom: $space-md;
+  }
+
+  td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-md;
+    padding: $space-xs 0;
+
+    &::before {
+      content: attr(data-label);
+      font-size: 0.8rem;
+      color: $color-text-muted;
+    }
+  }
+
+  &__name {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-sm;
+    font-weight: 600;
+
+    img {
+      border-radius: 50%;
+    }
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  // Escritorio: tabla clásica
+  
+  @include respond-to(md) {
+    thead {
+      position: static;
+      width: auto;
+      height: auto;
+      overflow: visible;
+      clip: auto;
+    }
+
+    tbody tr {
+      display: table-row;
+      margin: 0;
+      padding: 0;
+      background: none;
+      border: 0;
+      border-bottom: 1px solid $color-border;
+      border-radius: 0;
+    }
+
+    td {
+      display: table-cell;
+      padding: $space-md;
+
+      &::before {
+        content: none;
+      }
+    }
+  }
+}

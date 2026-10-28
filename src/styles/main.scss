@@ -1,0 +1,293 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: $font-family;
+  background: $color-bg;
+  color: $color-text;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 $space-md;
+  line-height: 1.2;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
+}
+
+// El foco programático en <main> no necesita contorno visible
+
+main:focus {
+  outline: none;
+}
+
+// Enlace para saltar la navegación (solo aparece con el teclado)
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: $space-md;
+  z-index: 100;
+  padding: $space-sm $space-md;
+  color: #fff;
+  background: $color-primary;
+  border-radius: $radius;
+
+  &:focus {
+    top: $space-sm;
+  }
+}
+
+.container {
+  @include container;
+}
+
+.page {
+  padding-block: $space-lg;
+}
+
+.muted {
+  color: $color-text-muted;
+}
+
+.up {
+  color: $color-up;
+}
+
+.down {
+  color: $color-down;
+}
+
+// Solo visible para lectores de pantalla
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Formularios (44px de alto: objetivo táctil cómodo)
+
+input,
+select {
+  font: inherit;
+  min-height: 44px;
+  padding: $space-sm $space-md;
+  color: $color-text;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 1px;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+  font-size: 0.875rem;
+  color: $color-text-muted;
+}
+
+.search {
+  flex: 1;
+  max-width: 420px;
+
+  input {
+    width: 100%;
+  }
+}
+
+// Móvil: los filtros se reparten el ancho; escritorio: tamaño natural
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-md;
+
+  .field {
+    flex: 1 1 150px;
+  }
+
+  select {
+    width: 100%;
+  }
+
+  @include respond-to(md) {
+    .field {
+      flex: 0 0 auto;
+    }
+
+    select {
+      width: auto;
+    }
+  }
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+  margin-bottom: $space-lg;
+
+  @include respond-to(md) {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+// Botones
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-xs;
+  min-height: 44px;
+  padding: $space-sm $space-md;
+  color: $color-text;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+
+  &:hover:not(:disabled) {
+    border-color: $color-primary;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--active {
+    color: #fff;
+    background: $color-primary;
+    border-color: $color-primary;
+  }
+}
+
+.star-btn {
+  min-width: 44px;
+  min-height: 44px;
+  padding: $space-xs;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: $color-text-muted;
+  background: none;
+  border: 0;
+
+  &:hover,
+  &.is-active {
+    color: #f5b301;
+  }
+}
+
+// Estados de carga y error
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-sm;
+  padding: $space-xl;
+  color: $color-text-muted;
+
+  &__spinner {
+    width: 22px;
+    height: 22px;
+    border: 3px solid $color-border;
+    border-top-color: $color-primary;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Si el usuario pidió menos movimiento: giro lento y sin transiciones
+
+@media (prefers-reduced-motion: reduce) {
+  .loader__spinner {
+    animation-duration: 3s;
+  }
+
+  * {
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.alert {
+  @include card;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $space-sm;
+  margin-bottom: $space-lg;
+  border-color: $color-down;
+
+  p {
+    margin: 0;
+  }
+}
+
+.is-refreshing {
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: $space-md;
+  margin-top: $space-lg;
+}

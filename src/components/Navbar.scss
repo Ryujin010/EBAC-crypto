@@ -1,0 +1,81 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: $color-surface;
+  border-bottom: 1px solid $color-border;
+
+  &__inner {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 60px;
+  }
+
+  &__logo {
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  &__toggle {
+    min-width: 44px;
+    min-height: 44px;
+    background: none;
+    border: 1px solid $color-border;
+    border-radius: $radius;
+    color: $color-text;
+    font-size: 1.25rem;
+  }
+
+  // Móvil: menú desplegable debajo de la barra
+
+  &__links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: $color-surface;
+    border-bottom: 1px solid $color-border;
+
+    &.is-open {
+      display: flex;
+    }
+
+    a {
+      padding: $space-md;
+      color: $color-text-muted;
+
+      &.active {
+        color: $color-primary;
+        font-weight: 600;
+      }
+    }
+  }
+
+  // Escritorio: menú horizontal, sin botón hamburguesa
+  
+  @include respond-to(md) {
+    &__toggle {
+      display: none;
+    }
+
+    &__links {
+      display: flex;
+      position: static;
+      flex-direction: row;
+      gap: $space-sm;
+      border: 0;
+      background: none;
+
+      a {
+        padding: $space-sm $space-md;
+      }
+    }
+  }
+}

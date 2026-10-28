@@ -1,0 +1,83 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.coin-detail {
+  &__back {
+    display: inline-block;
+    margin-bottom: $space-md;
+    color: $color-text-muted;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $space-md;
+    margin-bottom: $space-lg;
+
+    h1 {
+      margin: 0;
+    }
+
+    img {
+      border-radius: 50%;
+    }
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-md;
+    margin: 0 0 $space-xl;
+
+    > div {
+      @include card;
+    }
+
+    dt {
+      font-size: 0.8rem;
+      color: $color-text-muted;
+    }
+
+    dd {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    @include respond-to(sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to(md) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__ranges {
+    display: flex;
+    gap: $space-sm;
+    margin-bottom: $space-md;
+  }
+
+  &__description {
+    max-width: 70ch;
+    color: $color-text-muted;
+  }
+}
+
+.price-chart {
+  @include card;
+  min-height: 332px;
+  margin-bottom: $space-xl;
+  padding-inline: $space-sm;
+
+  p {
+    margin: 0 0 $space-sm $space-sm;
+    font-size: 0.85rem;
+  }
+}

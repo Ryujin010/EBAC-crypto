@@ -1,0 +1,30 @@
+// Colores
+$color-bg: #0b0e17;
+$color-surface: #151a28;
+$color-border: #242b3d;
+$color-text: #e6e9f2;
+$color-text-muted: #8b93a7;
+$color-primary: #4f8cff;
+$color-up: #16c784;
+$color-down: #ea3943;
+
+// Tipografía
+$font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+// Espaciado
+$space-xs: 0.25rem;
+$space-sm: 0.5rem;
+$space-md: 1rem;
+$space-lg: 1.5rem;
+$space-xl: 2.5rem;
+
+// Otros
+$radius: 12px;
+$container-width: 1200px;
+
+// Breakpoints (mobile-first)
+$breakpoints: (
+  sm: 600px,
+  md: 900px,
+  lg: 1200px,
+);

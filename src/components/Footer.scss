@@ -1,0 +1,12 @@
+@use '../styles/variables' as *;
+
+.footer {
+  border-top: 1px solid $color-border;
+  padding-block: $space-lg;
+  text-align: center;
+  font-size: 0.875rem;
+
+  p {
+    margin: 0;
+  }
+}

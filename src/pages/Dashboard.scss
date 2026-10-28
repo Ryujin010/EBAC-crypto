@@ -1,0 +1,23 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.dashboard {
+  display: grid;
+  gap: $space-xl;
+  margin-top: $space-lg;
+
+  h2 {
+    font-size: 1.15rem;
+  }
+
+  &__more {
+    display: inline-block;
+    margin-top: $space-md;
+    color: $color-primary;
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: 2fr 1fr;
+    align-items: start;
+  }
+}
