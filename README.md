@@ -2,7 +2,7 @@
 
 Aplicación web para consultar precios, gráficas y tendencias de criptomonedas, y guardar tus favoritas en una watchlist.
 
-🔗 **Sitio publicado:** _pega aquí tu enlace de Netlify_
+🔗 **Sitio publicado:** https://ebac-crypto-tracker.netlify.app
 
 ## Funcionalidades
 
